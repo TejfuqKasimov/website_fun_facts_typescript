@@ -31,4 +31,4 @@ dist-ssr
 *.js
 *.d.ts.map
 *.js.map
-
+*.js

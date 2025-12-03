@@ -5,12 +5,19 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "tsc && vite build",
     "preview": "vite preview",
-    "deploy": "vite build && gh-pages -d dist"
+    "type-check": "tsc --noEmit",
+    "deploy": "vite build && gh-pages -d dist",
+    "lint": "eslint . --ext .ts"
   },
   "devDependencies": {
     "gh-pages": "^6.3.0",
-    "vite": "^7.1.7"
+    "vite": "^7.1.7",
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "vite-plugin-checker": "^0.6.0"
   }
 }

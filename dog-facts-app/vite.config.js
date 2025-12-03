@@ -1,15 +1,13 @@
-import { defineConfig } from 'vite'
-
+import { defineConfig } from 'vite';
 export default defineConfig({
-  base: './', // важно для GitHub Pages
-  build: {
-    rollupOptions: {
-      input: {
-        main: './index.html',
-        dogFacts: './dog-facts.html',
-        dogImages: './dog-images.html',
-        randomFacts: './random-facts.html'
-      }
+    root: '.', // корень проекта
+    build: {
+        outDir: 'dist', // выходная папка
+        emptyOutDir: true,
+    },
+    server: {
+        port: 3000,
+        open: true // автоматически открыть браузер
     }
-  }
-})
+});
+//# sourceMappingURL=vite.config.js.map

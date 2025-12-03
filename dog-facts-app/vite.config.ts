@@ -1,13 +1,17 @@
 import { defineConfig } from 'vite'
+import react from "@vitejs/plugin-react";
 
 export default defineConfig({
-  root: '.',  // корень проекта
+  plugins: [react()],
+  base: './', // важно для GitHub Pages
   build: {
-    outDir: 'dist',  // выходная папка
-    emptyOutDir: true,
-  },
-  server: {
-    port: 3000,
-    open: true  // автоматически открыть браузер
+    rollupOptions: {
+      input: {
+        main: './index.html',
+        dogFacts: './dog-facts.html',
+        dogImages: './dog-images.html',
+        randomFacts: './random-facts.html'
+      }
+    }
   }
 })

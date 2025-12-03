@@ -13,7 +13,6 @@ document.addEventListener('DOMContentLoaded', function() {
             container.innerHTML = '<p>Загрузка...</p>'
             
             const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en')
-            console.log(response)
             
             if (!response.ok) {
                 throw new Error('Ошибка загрузки факта')

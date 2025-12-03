@@ -30,16 +30,16 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    function displayFacts(facts: Fact) {
-        console.log(facts.attributes)
-        if (!facts || facts.attributes.body.length === 0) {
+    function displayFacts(facts: Fact[]) {
+        console.log(facts[0])
+        if (!facts || facts[0].attributes.body.length === 0) {
             container.innerHTML = '<p>Факты не найдены</p>';
             return;
         }
 
         const factsHTML = `
             <div class="fact-card">
-                <p>${facts.attributes.body}</p>
+                <p>${facts[0].attributes.body}</p>
             </div>
         `
 

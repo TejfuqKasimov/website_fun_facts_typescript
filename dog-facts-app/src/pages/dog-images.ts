@@ -2,16 +2,9 @@ interface ImageData {
     url: string
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const loadButton = document.getElementById('loadImage') as HTMLButtonElement
-    const container = document.getElementById('image-container') as HTMLElement
-
-    loadButton.addEventListener('click', loadDogImage);
-
+export function GetDogImage() {
     async function loadDogImage() {
         try {
-            container.innerHTML = '<p>Загрузка...</p>';
-            
             const response = await fetch('https://random.dog/woof.json?include=jpg');
             
             if (!response.ok) {
@@ -19,25 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const data = await response.json();
-            displayImage(data);
+            return displayImage(data);
             
         } catch (error) {
-            container.innerHTML = `<p class="error">Ошибка: ${error}</p>`;
+            return `<p class="error">Ошибка: ${error}</p>`;
         }
     }
 
     function displayImage(imageData: ImageData) {
         if (!imageData.url) {
-            container.innerHTML = '<p>Изображение не найдено</p>';
-            return;
+            return '<p>Изображение не найдено</p>';
         }
-
-        container.innerHTML = `
-            <div class="image-card">
-                <img src="${imageData.url}" alt="Случайная собака" onerror="this.style.display='none'">
-            </div>
-        `;
+        console.log(imageData.url)
+        const image = imageData.url;
+        return image
     }
 
-    loadDogImage();
-});
+    return loadDogImage();
+}

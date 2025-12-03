@@ -1,17 +1,10 @@
 interface FactData {
-        source: string,
-        text: string
-    }
-document.addEventListener('DOMContentLoaded', function() {
-    const loadButton = document.getElementById('loadRandomFact') as HTMLButtonElement
-    const container = document.getElementById('fact-container') as HTMLElement
-
-    loadButton.addEventListener('click', loadRandomFact)
-
+    source: string,
+    text: string
+}
+export function GetRandomFacts() {
     async function loadRandomFact() {
         try {
-            container.innerHTML = '<p>Загрузка...</p>'
-            
             const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/random?language=en')
             
             if (!response.ok) {
@@ -19,26 +12,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const data = await response.json();
-            displayFact(data);
+            return displayFact(data);
             
         } catch (error) {
-            container.innerHTML = `<p class="error">Ошибка: ${error}</p>`
+            return ['Ошибка: ${error}', ""]
         }
     }
 
     function displayFact(factData: FactData) {
         if (factData.text.length === 0) {
-            container.innerHTML = '<p>Факт не найден</p>'
-            return;
+            return ['Факт не найден', ""]
         }
 
-        container.innerHTML = `
-            <div class="fact-card">
-                <p>${factData.text}</p>
-                ${factData.source ? `<p class="source">Источник: ${factData.source}</p>` : ''}
-            </div>
-        `;
+        const factsHTML = [factData.text, factData.source]
+        return factsHTML
     }
 
-    loadRandomFact();
-});
+    return loadRandomFact();
+}

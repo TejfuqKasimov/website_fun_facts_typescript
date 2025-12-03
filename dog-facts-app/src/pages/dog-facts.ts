@@ -6,16 +6,10 @@ interface Fact {
     }
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    const loadButton = document.getElementById('loadFacts') as HTMLButtonElement;
-    const container = document.getElementById('facts-container') as HTMLElement;
-
-    loadButton.addEventListener('click', loadDogFacts);
-
+// document.addEventListener('DOMContentLoaded', 
+export function GetDogFacts() {
     async function loadDogFacts() {
         try {
-            container.innerHTML = '<p>Загрузка...</p>';
-            
             const response = await fetch('https://dogapi.dog/api/v2/facts');
             
             if (!response.ok) {
@@ -23,28 +17,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             const data = await response.json();
-            displayFacts(data.data);
+            return displayFacts(data.data);
             
         } catch (error) {
-            container.innerHTML = `<p class="error">Ошибка: ${error}</p>`;
+            return `Ошибка: ${error}`;
         }
     }
 
     function displayFacts(facts: Fact[]) {
-        console.log(facts[0])
         if (!facts || facts[0].attributes.body.length === 0) {
-            container.innerHTML = '<p>Факты не найдены</p>';
-            return;
+            return 'Факты не найдены';
         }
 
-        const factsHTML = `
-            <div class="fact-card">
-                <p>${facts[0].attributes.body}</p>
-            </div>
-        `
-
-        container.innerHTML = factsHTML;
+        const factsHTML = facts[0].attributes.body
+        return factsHTML
     }
 
-    loadDogFacts();
-});
+    return loadDogFacts();
+}

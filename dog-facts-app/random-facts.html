@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Случайные факты</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Случайные интересные факты</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="dog-facts.html">Факты о собаках</a></li>
+                    <li><a href="dog-images.html">Картинки собак</a></li>
+                    <li><a href="random-facts.html">Случайные факты</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <button id="loadRandomFact" class="btn">Новый факт</button>
+            <div id="fact-container" class="content"></div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Факты и Картинки</p>
+        </footer>
+    </div>
+    
+    <script type="module" src="./src/pages/random-facts.js"></script>
+</body>
+</html>
